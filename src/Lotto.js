@@ -1,4 +1,4 @@
-import { LOTTO_CONFIG, ERROR_MESSAGES } from '../LottoConfig.js';
+import { LOTTO_CONFIG, ERROR_MESSAGES } from './LottoConfig.js';
 
 class Lotto {
   #numbers;

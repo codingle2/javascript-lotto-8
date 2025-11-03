@@ -3,7 +3,7 @@ import OutputView from '../view/OutputView.js';
 import LottoStore from '../model/LottoStore.js'; 
 import { LOTTO_CONFIG, ERROR_MESSAGES } from '../LottoConfig.js';
 import PrizeCalculator from '../model/PrizeCalculator.js'; 
-import Lotto from "../model/Lotto.js"
+import Lotto from "../Lotto.js"
 
 class LottoController {
   #lottoStore; 
@@ -57,6 +57,9 @@ class LottoController {
 
     // 2. 모델에서 생성된 로또 목록 가져오기
     const lottos = this.#lottoStore.getLottos();
+
+    // test에서 lotto 몇개 구매했는지 뜨게 함
+    OutputView.printPurchaseResult(count);
 
     // 3. 뷰(OutputView)에 출력 요청
     OutputView.printLottos(lottos);

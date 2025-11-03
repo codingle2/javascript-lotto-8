@@ -2,7 +2,7 @@
 
 import { Random } from '@woowacourse/mission-utils';
 import { LOTTO_CONFIG } from '../LottoConfig.js';
-import Lotto from './Lotto.js';
+import Lotto from '../Lotto.js';
 
 class LottoStore {
   #lottos;
