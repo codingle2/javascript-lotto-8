@@ -17,4 +17,13 @@ export const ERROR_MESSAGES = {
   LOTTO_DUPLICATE: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.',
   LOTTO_RANGE: `[ERROR] 로또 번호는 ${LOTTO_CONFIG.MIN_NUMBER}부터 ${LOTTO_CONFIG.MAX_NUMBER} 사이의 숫자여야 합니다.`,
   LOTTO_NOT_INTEGER: '[ERROR] 로또 번호는 정수여야 합니다.',
+
+  
+  // 당첨 번호 파싱 관련 (쉼표로 구분되지 않거나 숫자가 아닌 경우)
+  WINNING_NOT_NUMBER: '[ERROR] 당첨 번호는 쉼표로 구분된 숫자여야 합니다.',
+
+  // 보너스 번호 관련 에러
+  BONUS_NAN: '[ERROR] 보너스 번호는 숫자여야 합니다.',
+  BONUS_RANGE: `[ERROR] 보너스 번호는 ${LOTTO_CONFIG.MIN_NUMBER}부터 ${LOTTO_CONFIG.MAX_NUMBER} 사이의 숫자여야 합니다.`,
+  BONUS_DUPLICATE: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
 };
