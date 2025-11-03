@@ -5,6 +5,25 @@ export const LOTTO_CONFIG = {
   PRICE_PER_TICKET: 1000,
 };
 
+// 당첨 등수 식별자
+export const RANK = {
+  FIRST: 'FIRST',
+  SECOND: 'SECOND',
+  THIRD: 'THIRD',
+  FOURTH: 'FOURTH',
+  FIFTH: 'FIFTH',
+};
+
+// 등수별 당첨금
+export const PRIZE_MONEY = {
+  [RANK.FIRST]: 2_000_000_000,
+  [RANK.SECOND]: 30_000_000,
+  [RANK.THIRD]: 1_500_000,
+  [RANK.FOURTH]: 50_000,
+  [RANK.FIFTH]: 5_000,
+};
+
+
 // 에러 메시지 정리
 export const ERROR_MESSAGES = {
   // 구입 금액 관련 에러

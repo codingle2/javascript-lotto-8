@@ -1,14 +1,18 @@
 import InputView from '../view/InputView.js';
 import OutputView from '../view/OutputView.js';
 import LottoStore from '../model/LottoStore.js'; 
-import { LOTTO_CONFIG, ERROR_MESSAGES } from '../LottoConfig.js'; 
+import { LOTTO_CONFIG, ERROR_MESSAGES } from '../LottoConfig.js';
+import PrizeCalculator from '../model/PrizeCalculator.js'; 
 import Lotto from "../model/Lotto.js"
 
 class LottoController {
   #lottoStore; 
+  #prizeCalculator;
+  #purchaseAmount; 
 
   constructor() {
     this.#lottoStore = new LottoStore();
+    this.#prizeCalculator = new PrizeCalculator();
   }
 
   async getPurchaseAmount() {
@@ -17,6 +21,10 @@ class LottoController {
         const input = await InputView.readPurchaseAmount();
         const amount = this.#validateAmount(input);
         const count = amount / LOTTO_CONFIG.PRICE_PER_TICKET;
+
+        // 구매 금액 저장
+        this.#purchaseAmount = amount;
+
         return count;
       } catch (error) {
         OutputView.printError(error.message);
@@ -136,6 +144,34 @@ class LottoController {
 
     return number;
   }
+  
+  /**
+  당첨 결과를 계산하고 출력을 요청
+  @param {number[]} winningNumbers
+  @param {number} bonusNumber
+  */
+  calculateAndShowResults(winningNumbers, bonusNumber) {
+    // 1. 모델(LottoStore)에서 로또 목록 가져오기
+    const lottos = this.#lottoStore.getLottos();
+
+    // 2. 모델(PrizeCalculator)에 계산 요청
+    const results = this.#prizeCalculator.calculateResults(
+      lottos,
+      winningNumbers,
+      bonusNumber
+    );
+
+    const totalPrize = this.#prizeCalculator.calculateTotalPrize(results);
+
+    const rateOfReturn = this.#prizeCalculator.calculateRateOfReturn(
+      totalPrize,
+      this.#purchaseAmount // 컨트롤러에 저장된 구매 금액 사용
+    );
+
+    // 3. 뷰(OutputView)에 출력 요청
+    OutputView.printResults(results, rateOfReturn);
+  }
 }
+
 
 export default LottoController;

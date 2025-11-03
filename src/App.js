@@ -22,6 +22,8 @@ class App {
       // 4. 보너스 번호 입력 (당첨 번호와 중복 검사를 위해 winningNumbers 전달)
       const bonusNumber = await this.#lottoController.getBonusNumber(winningNumbers);
 
+      // 5. 결과 계산 및 출력
+      this.#lottoController.calculateAndShowResults(winningNumbers, bonusNumber);
   }
 }
 
